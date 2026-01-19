@@ -4,11 +4,7 @@
 
 <template>
 <div>
-  <hr />
   <router-view></router-view>
-  <hr />
-  <hr />
-  <hr />
 </div>
 </template>
 
