@@ -3,7 +3,13 @@
 </script>
 
 <template>
-<div>我是App</div>
+<div>
+  <hr />
+  <router-view></router-view>
+  <hr />
+  <hr />
+  <hr />
+</div>
 </template>
 
 <style scoped>
