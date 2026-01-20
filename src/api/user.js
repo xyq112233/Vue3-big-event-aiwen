@@ -16,3 +16,9 @@ export function userLoginService(data){
     data
   })
 }
+//获取用户信息
+export function userGetInfoService(){
+  return request({
+    url: '/my/userinfo'
+  })
+}
