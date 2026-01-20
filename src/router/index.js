@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '@/stores'
 
 
 //createRouter 创建路由实例
@@ -10,7 +11,7 @@ const router = createRouter({
   routes: [
     {
       path: '/login',
-      component: () => import('@/views/login/loginPage.vue'),//登录页
+      component: () => import('@/views/login/LoginPage.vue'),//登录页
     },
     {
       path:'/',
@@ -40,6 +41,13 @@ const router = createRouter({
       ]
     }
   ],
+})
+//路由守卫,判断是否有token,没有则跳转到登录页
+router.beforeEach((to) => {
+  const useStore = useUserStore()
+  if(!useStore.token && to.path !== '/login'){
+    return '/login'
+  }
 })
 
 export default router
