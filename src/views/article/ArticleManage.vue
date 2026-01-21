@@ -1,7 +1,7 @@
 <script setup>
 import ChannelSelect from '@/views/article/components/ChannelSelect.vue'
 import { Delete, Edit } from '@element-plus/icons-vue'
-import { getArticleList } from '@/api/article'
+import { getArticleList, deleteArticleService } from '@/api/article'
 import { formatTime } from '@/utils/format'
 import ArticleEdit from '@/views/article/components/ArticleEdit.vue'
 import { ref } from 'vue'
@@ -49,8 +49,15 @@ const onEditArticle = (row) => {
   articleEditRef.value.open(row)
 }
 //删除逻辑
-const onDeleteArticle = (row) => {
-  console.log(row)
+const onDeleteArticle = async (row) => {
+  await ElMessageBox.confirm('你确认删除该文章信息吗？', '温馨提示', {
+    type: 'warning',
+    confirmButtonText: '确认',
+    cancelButtonText: '取消'
+  })
+  await deleteArticleService(row.id)
+  ElMessage({ type: 'success', message: '删除成功' })
+  artGetArticleList()
 }
 //处理分页逻辑
 const onSizeChange = (size) => {

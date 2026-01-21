@@ -66,3 +66,13 @@ export function ArtEditService(data) {
     data
   })
 }
+//文章:删除文章
+export function deleteArticleService(id) {
+  return request({
+    url: 'my/article/info',
+    method: 'delete',
+    params: {
+      id
+    }
+  })
+}
