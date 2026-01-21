@@ -15,7 +15,7 @@
   }
   //上传用户头像
   const uploadAvatar = async () => {
-    await userUploadAvatarService(imageUrl.value)
+    await userUploadAvatarService({avatar: imageUrl.value})
     await userStore.getUser()
     ElMessage({ type: 'success', message: '上传成功' })
   }
