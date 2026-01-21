@@ -8,7 +8,7 @@ const baseURL = 'http://big-event-vue-api-t.itheima.net'
 const instance = axios.create({
   // TODO 1. 基础地址，超时时间
   baseURL,
-  timeout: 10000,
+  timeout: 30000,
 })
 //请求拦截器
 instance.interceptors.request.use(
@@ -27,12 +27,12 @@ instance.interceptors.response.use(
   (res) => {
     
     // TODO 4. 摘取核心响应数据
-    console.log(res);
+    // console.log(res);
     if(res.data.code === 0 ){
       return res
     }
     // TODO 3. 处理业务失败
-    ElMessage.error(res.data.message || '服务异常') 
+    ElMessage.error(res.data?.message || '服务异常') 
     return Promise.reject(res.data)
   },
   (err) => {
@@ -49,7 +49,7 @@ instance.interceptors.response.use(
     }
 
     //默认情况直接给提示
-    ElMessage.error(err.data.message || '服务异常')
+    ElMessage.error(err.data?.message || '服务异常')
     return Promise.reject(err)
   }
 )
